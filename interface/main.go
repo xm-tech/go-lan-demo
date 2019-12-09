@@ -2,13 +2,13 @@ package main
 
 import "fmt"
 
+type Connecter interface {
+	Connect()
+}
+
 type USB interface {
 	Name() string
 	Connecter
-}
-
-type Connecter interface {
-	Connect()
 }
 
 // try to implement USB interface
