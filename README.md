@@ -1,7 +1,8 @@
 # go language demos
 
 - TODO
-    - json
+    - [x] json
+    - file
     - mysql
     - redis
     - log
@@ -9,3 +10,6 @@
     - mq
         - nsq
         - kafka
+    - http
+    - tcp
+    - udp
