@@ -10,7 +10,7 @@ func main() {
 	a := [...]int{0: 1, 1: 2, 3: 3}
 	fmt.Printf("a = %+v\n", a)
 
-	c := [...]int{99: 1}
+	c := [...]int{99: 5}
 	fmt.Printf("c = %+v\n", c)
 
 	// 指向数组的指针
