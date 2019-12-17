@@ -8,5 +8,5 @@ func main() {
 		ch <- "hello, golang"
 	}()
 	resp := <-ch
-	fmt.Printf("resp = %+v\n", resp)
+	fmt.Println(resp)
 }
