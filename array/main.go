@@ -7,6 +7,7 @@ func main() {
 	b[1] = 2
 	fmt.Printf("b = %+v\n", b)
 
+	// int slice 默认是0，可具体指定每个索引编号对应的值
 	a := [...]int{0: 1, 1: 2, 3: 3}
 	fmt.Printf("a = %+v\n", a)
 
