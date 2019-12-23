@@ -4,6 +4,7 @@
     - [x] json
     - [x] file
     - [x] mysql
+    - goroutine
     - redis
     - log
     - tcp
