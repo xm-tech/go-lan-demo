@@ -6,6 +6,7 @@
     - [x] mysql
     - goroutine
     - redis
+        - codis
     - log
     - tcp
     - protobuf
