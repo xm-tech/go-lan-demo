@@ -19,3 +19,5 @@
 - books
     - Go语言编程
     - Go语言实战
+- Tips
+    - urgently need to do lots of practice(massive exercises)
