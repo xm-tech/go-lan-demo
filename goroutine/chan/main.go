@@ -10,18 +10,18 @@ type Cmd struct {
 func main() {
 	ch := make(chan string, 1)
 	go func() {
-		ch <- "hello, golang"
+		ch <- "gogo"
 	}()
 	resp := <-ch
 	fmt.Println(resp)
 
-	var cmdChan = make(chan *Cmd, 1)
+	var msgChan = make(chan *Cmd, 1)
 	go func() {
-		cmdChan <- &Cmd{
+		msgChan <- &Cmd{
 			id:   1,
 			data: "hello golang",
 		}
 	}()
-	cmdResp := <-cmdChan
-	fmt.Println(cmdResp)
+	msgResp := <-msgChan
+	fmt.Println(msgResp)
 }
