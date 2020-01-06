@@ -4,8 +4,9 @@ import "encoding/json"
 import "fmt"
 
 type Msg struct {
-	MsgId int    `json:"msg_id"`
-	Data  string `json:"data"`
+	MsgId   int    `json:"msg_id"`
+	ErrCode int    `json:"err_code"`
+	Data    string `json:"data"`
 }
 
 func main() {
@@ -19,15 +20,17 @@ func main() {
 	var msgChan = make(chan *Msg, 1)
 	go func() {
 		msgChan <- &Msg{
-			MsgId: 1,
-			Data:  "hello golang",
+			MsgId:   1,
+			ErrCode: 0,
+			Data:    "hello golang",
 		}
 	}()
 	fmt.Println(<-msgChan)
 
 	var bytes, err = json.Marshal(&Msg{
-		MsgId: 2,
-		Data:  "welcome to golang",
+		MsgId:   2,
+		ErrCode: 0,
+		Data:    "welcome to golang",
 	})
 	if err != nil {
 		panic("json Marshal fail")
