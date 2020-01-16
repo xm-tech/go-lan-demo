@@ -1,3 +1,11 @@
+- TODO
+    - mysql
+    - redis
     - log
     - tcp
     - protobuf
+    - etcd
+    - zookeeper
+    - grpc
+- remark
+    - mysql, redis 等常用操作必须做到特别熟练
