@@ -1,13 +1,18 @@
 - TODO
+    - frequently used package
+        - time
+        - math
+        - string
     - golang base datastruct
         - list
-        - map
+        - [x] map
         - set
-        - array
+        - [x] array
     - mysql
         - [x] gorm
             - [x] curd
-            - query list
+            - [x] query list
+        - time field
     - redis
     - log
     - tcp
