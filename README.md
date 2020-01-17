@@ -1,5 +1,8 @@
 - TODO
     - mysql
+        - [x] gorm
+            - [x] curd
+            - query list
     - redis
     - log
     - tcp
@@ -7,5 +10,9 @@
     - etcd
     - zookeeper
     - grpc
+    - project practises
+        - mod like chat room app with telnet
+        - china chess game which with room
+    - 询问下yalla golang 使用的相关工具
 - remark
     - mysql, redis 等常用操作必须做到特别熟练
