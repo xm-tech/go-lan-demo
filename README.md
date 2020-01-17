@@ -1,4 +1,9 @@
 - TODO
+    - golang base datastruct
+        - list
+        - map
+        - set
+        - array
     - mysql
         - [x] gorm
             - [x] curd
