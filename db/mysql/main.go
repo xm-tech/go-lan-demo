@@ -39,6 +39,15 @@ func (user *User) del() error {
 	return nil
 }
 
+func delUsersByName(name string) error {
+	db := gorm_.GetDb()
+	err := db.Where("name=?", name).Delete(User{}).Error
+	if err != nil {
+		panic(err)
+	}
+	return nil
+}
+
 func getUsersByName(name string) ([]User, error) {
 	db := gorm_.GetDb()
 	var users []User
@@ -77,11 +86,16 @@ func main() {
 	// delUser(8)
 	// delUser(10)
 	// delUser(12)
-	users, err := getUsersByName("maxm")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("users = %+v\n", users)
+	// users, err := getUsersByName("maxm")
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Printf("users = %+v\n", users)
+
+	// delUsersByName("lqh")
+	create("tanqin", 1)
+	create("lqh", 1)
+	create("maxm", 0)
 }
 
 func delUser(id int) error {
@@ -91,10 +105,10 @@ func delUser(id int) error {
 	return nil
 }
 
-func create() error {
+func create(name string, sex int) error {
 	user := new(User)
-	user.Name = "lqh"
-	user.Sex = 1
+	user.Name = name
+	user.Sex = sex
 	user.Save()
 	return nil
 }
