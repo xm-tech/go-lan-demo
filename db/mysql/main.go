@@ -59,6 +59,21 @@ func getUsersByName(name string) ([]User, error) {
 	return users, nil
 }
 
+func getUsersByNameWithRawSql(name string) (interface{}, error) {
+	db := gorm_.GetDb()
+	type UserProp struct {
+		Name string `gorm:"name"`
+		Sex  int    `gorm:"sex"`
+	}
+
+	var users []UserProp
+	err := db.Raw("select name, sex from user where name =?", name).Scan(&users).Error
+	if err != nil {
+		return nil, fmt.Errorf("getUsersByNameWithRawSql err, name=%v", name)
+	}
+	return users, nil
+}
+
 func main() {
 	// var db *gorm.DB = gorm_.GetDb()
 
@@ -93,9 +108,14 @@ func main() {
 	// fmt.Printf("users = %+v\n", users)
 
 	// delUsersByName("lqh")
-	create("tanqin", 1)
-	create("lqh", 1)
-	create("maxm", 0)
+	// create("tanqin", 1)
+	// create("lqh", 1)
+	// create("maxm", 0)
+	users, err := getUsersByNameWithRawSql("maxm")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("users = %+v\n", users)
 }
 
 func delUser(id int) error {

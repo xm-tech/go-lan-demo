@@ -14,9 +14,9 @@
             - [x] query list
         - time field
     - redis
+    - protobuf
     - log
     - tcp
-    - protobuf
     - etcd
     - zookeeper
     - grpc
