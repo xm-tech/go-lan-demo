@@ -8,23 +8,56 @@ import (
 )
 
 func main() {
-	conn, err := getRedisConn()
+	set("maxm", 35)
+	set("tq", 33)
+	set("lqh", 29)
+	age := get("maxm")
+	fmt.Printf("age = %+v\n", age)
+}
+
+func set(key string, val interface{}) {
+	conn, err := getRedisConnFromPool()
 	if err != nil {
 		panic(err)
 	}
 	defer conn.Close()
 
-	_, err = conn.Do("Set", "maxm", 35)
+	_, err = conn.Do("Set", key, val)
 	if err != nil {
 		fmt.Println(fmt.Errorf("set cmd err, %v", err))
 		panic("set cmd err")
 	}
+}
 
-	r, err := redis.Int(conn.Do("get", "maxm"))
+func get(key string) interface{} {
+	conn, err := getRedisConnFromPool()
+	if err != nil {
+		panic(err)
+	}
+	defer conn.Close()
+
+	r, err := conn.Do("get", key)
 	if err != nil {
 		panic("get failed")
 	}
 	fmt.Printf("r = %+v\n", r)
+	if val, ok := r.(string); ok {
+		return val
+	} else if val, ok := r.(int); ok {
+		return val
+	}
+	return nil
+}
+
+func getRedisConnFromPool() (redis.Conn, error) {
+	pool := &redis.Pool{
+		Dial:            func() (redis.Conn, error) { return getRedisConn() },
+		MaxIdle:         5,
+		MaxActive:       18,
+		IdleTimeout:     240 * time.Second,
+		MaxConnLifetime: 300 * time.Second,
+	}
+	return pool.Get(), nil
 }
 
 func getRedisConn() (redis.Conn, error) {
