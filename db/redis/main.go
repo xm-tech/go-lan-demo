@@ -10,7 +10,7 @@ import (
 func main() {
 	set("maxm", 35)
 	set("tq", 33)
-	set("lqh", 29)
+	set("lqh", 30)
 	age := get("maxm")
 	fmt.Printf("age = %+v\n", age)
 }
