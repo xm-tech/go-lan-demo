@@ -111,7 +111,7 @@ func main() {
 	// create("tanqin", 1)
 	// create("lqh", 1)
 	// create("maxm", 0)
-	users, err := getUsersByNameWithRawSql("maxm")
+	users, err := getUsersByNameWithRawSql("lqh")
 	if err != nil {
 		panic(err)
 	}
