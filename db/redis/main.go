@@ -36,17 +36,12 @@ func get(key string) interface{} {
 	}
 	defer conn.Close()
 
-	r, err := conn.Do("get", key)
+	r, err := redis.String(conn.Do("get", key))
 	if err != nil {
-		panic("get failed")
+		fmt.Errorf("redis get error, err=%+v\n", err)
+		return nil
 	}
-	fmt.Printf("r = %+v\n", r)
-	if val, ok := r.(string); ok {
-		return val
-	} else if val, ok := r.(int); ok {
-		return val
-	}
-	return nil
+	return r
 }
 
 func getRedisConnFromPool() (redis.Conn, error) {
