@@ -14,6 +14,7 @@
             - [x] query list
         - time field
     - redis
+        - redis
     - protobuf
     - log
     - tcp
