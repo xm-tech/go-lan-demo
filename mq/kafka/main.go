@@ -38,10 +38,16 @@ func main() {
 		wg.Add(1)
 		go func(pc sarama.PartitionConsumer) {
 			defer wg.Done()
-			for msg := range pc.Messages() {
-				fmt.Printf("msg = %+v\n", msg)
-				// fmt.Printf("Partion: %+v, Offset: %+v, Key:%+v, Value:%+v\n", msg.Partition, msg.Offset, string(msg.Key), string(msg.Value))
+			for {
+				select {
+				case msg := <-pc.Messages():
+					fmt.Printf("msg: Partion: %+v, Offset: %+v, Key:%+v, Value:%+v\n", msg.Partition, msg.Offset, string(msg.Key), string(msg.Value))
+				}
 			}
+			// for msg := range pc.Messages() {
+			// 	fmt.Printf("msg = %+v\n", msg)
+			// 	// fmt.Printf("Partion: %+v, Offset: %+v, Key:%+v, Value:%+v\n", msg.Partition, msg.Offset, string(msg.Key), string(msg.Value))
+			// }
 		}(pc)
 	}
 	wg.Wait()
