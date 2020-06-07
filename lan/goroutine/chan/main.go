@@ -10,22 +10,15 @@ type Msg struct {
 }
 
 func main() {
-	ch := make(chan string, 1)
+	var msgQ = make(chan *Msg, 1)
 	go func() {
-		ch <- "gogo"
-	}()
-	resp := <-ch
-	fmt.Println(resp)
-
-	var msgChan = make(chan *Msg, 1)
-	go func() {
-		msgChan <- &Msg{
+		msgQ <- &Msg{
 			MsgId:   1,
 			ErrCode: 0,
 			Data:    "hello golang",
 		}
 	}()
-	fmt.Println(<-msgChan)
+	fmt.Println(<-msgQ)
 
 	var bytes, err = json.Marshal(&Msg{
 		MsgId:   2,

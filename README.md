@@ -13,8 +13,9 @@
             - [x] curd
             - [x] query list
         - time field
-    - redis
+    - [x] redis
         - redis
+	- [x] kafka
     - protobuf
     - log
     - tcp
